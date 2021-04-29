@@ -212,21 +212,3 @@ void GhiTiep(bookList *a, int n)
 	}
 	fclose(cfPtr);
 }
-void textFile(FILE *readPtr)
-{
-	FILE *writePtr;
-	int result;
-	bookList a;
-	writePtr = fopen("book.txt","w");
-	rewind(readPtr);
-	fprintf(writePtr,"\n%s||%-15s%-20s%-15s%s","STT","Ten Sach","Ten Tac Gia","The Loai","Gia Tien");
-	while(!feof(readPtr))
-	{
-		result = fread(&a,sizeof(bookList),1,readPtr);
-		if(result != 0 && a.STT !=0)
-		{
-			fprintf(writePtr,"\n00%d||%-15s||%-20s||%-15s||%d",a.STT,a.TenSach,a.TacGia,a.theloai,a.giatien);
-		}
-	}
-	fclose(writePtr);
-}
