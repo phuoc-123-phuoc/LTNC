@@ -1,0 +1,68 @@
+void Xoa(bookList *&a, int &n)
+{
+	int stt;
+	Xuat_(a,n);
+    do
+	{
+		printf("\nNhap so thu tu cua quyen sach can xoa: ");
+		scanf("%d",&stt);
+		if(stt <1 || stt > n)
+		{
+			printf("\nVi tri xoa can nam trong doan thu tu [1;%d]",n);
+		}
+	}while(stt <1 || stt > n);
+	stt--;
+    for(int i= stt+1; i<n; i++)
+	{
+		   a[i-1]=a[i];
+	}
+     n--;
+	realloc(a,n*sizeof(bookList));
+}
+void Them(bookList *&a, int &n)
+{
+	int stt;
+	bookList b ;
+	Xuat_(a,n);
+	do
+	{
+		printf("\nNhap so thu tu cua quyen sach can them: ");
+		scanf("%d",&stt);
+		if(stt < 1 || stt > n+1)
+		{
+			printf("\nVi tri them can nam trong doan thu tu [1;%d]",n+1);
+		}
+	}while(stt<1 || stt >n+1);
+	stt--;
+	printf("\nNhap thong tin quyen sach can them:");
+	Nhap(b);
+	realloc(a,(n+1)*sizeof(bookList));
+	for(int i=n-1; i>= stt; i--)
+	{
+		a[i+1] = a[i];
+	}
+    a[stt]=b;
+	n++;
+}
+void CapNhat(bookList *&a, int n)
+{
+	int stt;
+	do
+	{
+		printf("\nNhap so thu tu cua quyen sach can cap nhat: ");
+		scanf("%d",&stt);
+		if(stt <1 || stt > n)
+		{
+			printf("\nVi tri cap nhat can nam trong doan thu tu [1;%d]",n);
+		}
+	}while(stt <1 || stt > n);
+	stt--;
+	for(int i=0; i<n; i++)
+	{
+		if(stt==i)
+		{
+			Nhap(a[i]);
+			return;
+		}
+	}
+}
