@@ -201,4 +201,141 @@ void CapNhat(bookList *&a, int n)
 		}
 	}
 }
+void GhiTiep(bookList *a, int n)
+{
+	FILE *cfPtr;
+	cfPtr = fopen("book.dat","wb");
+	rewind(cfPtr);
+	for(int i=0; i<n ; i++)
+	{
+		fwrite(&a[i],sizeof(bookList),1,cfPtr);
+	}
+	fclose(cfPtr);
+}
+int EnterChoice(void);
+void Menu();
+int main()
+{
+	Menu();
+}
+int EnterChoice(void)
+{
+	int choice;
+	system("cls");
+	set_color( 0 << 10 | 0 << 4 | 7);
+    system("CLS");
+    set_color( 3 << 10 | 1 << 4 | 11);
+    printf("                                                             #             \n  "); 
+    printf("        #                          ##                    #  ##           \n "); 
+    printf("          #                       #  #                   #      #         \n ");
+	printf("            #                    #    #                       #           \n ") ;
+    printf(" #####   #     ##     ########     #    ####      #         ##    #      #\n");
+    printf("  #   #  # #    ##        ##      # #   #   #      #      #    #   # #    #\n");
+    printf("  ###   #####   ##        ##     #####  # ##       #     #      #  #  #   #\n");
+    printf("  #   # #   #   ##        ##     #   #  #          #      #    #   #   #  #\n");
+    printf("  ####  #   #   ##        ##     #   #  #          #####    ##     #    # #\n");
+    printf("                                   #                                       \n");
+    set_color (10);
+	printf("%s","\n\t\t\t\t\t\t======MENU======\n"
+	"\t\t\t1 - Nhap du lieu cua tung quyen sach\n"
+	"\t\t\t2 - Sap xep, thong ke va hien thi thong tin\n" 
+	"\t\t\t    chi tiet cua tung quyen sach theo the loai (Z->A)\n"
+	"\t\t\t3 - Tim quyen sach theo the loai\n"
+	"\t\t\t4 - Ghi vao tap tin nhi phan book.dat\n"
+	"\t\t\t5 - Them du lieu cua tung quyen sach\n"
+	"\t\t\t6 - Xoa du lieu cua tung quyen sach\n"
+	"\t\t\t7 - Cap nhat du lieu cua tung quyen sach\n"
+	"\t\t\t8 - Thoat\n"
+	"\t\t\tNhap lua chon cua ban: ");
+	scanf("%d",&choice);
+	return choice;
+	
+}
+void Menu()
+{
+	bookList *a;
+	int Choice,n=0;
+	while((Choice = EnterChoice()) !=8)
+	{
+		switch(Choice)
+		{
+			case 1:
+				Nhap_(a,n);
+				break;
+			case 2:
+				if(n==0)
+				{
+					printf("\nBan chua nhap du lieu");
+				}
+				else
+				{
+					Xuat_(a,n);
+				}
+				system("pause");
+				break;
+			case 3:
+				if(n==0)
+				{
+					printf("\nBan chua nhap du lieu");
+				}
+				else
+				{
+					TimKiem(a,n);
+				}
+				system("pause");
+				break;
+			case 4:
+				if(n==0)
+				{
+					printf("\nBan chua nhap du lieu");
+				}
+				else
+				{
+					GhiTiep(a,n);
+				}
+				system("pause");
+				break;
+			case 5:
+			    if(n==0)
+				{
+					printf("\nBan chua nhap du lieu");
+				}
+				else
+				{
+					Them(a,n);
+				}
+				system("pause");
+			    break;
+			case 6:
+				if(n==0)
+				{
+					printf("\nBan chua nhap du lieu");
+				}
+				else
+				{
+					Xoa(a,n);
+				}
+				system("pause");
+				break;
+			case 7:
+				if(n==0)
+				{
+					printf("\nBan chua nhap du lieu");
+				}
+				else
+				{
+					CapNhat(a,n);
+				}
+				system("pause");
+				break;
+			case 8:
+				break; 
+			default:
+				printf("\nLua chon khong hop le !");
+				system("pause");
+				break;	
+		}
+	}
+	free(a);
+}
 
